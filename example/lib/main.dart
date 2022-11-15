@@ -62,6 +62,12 @@ class _MyHomePageState extends State<MyHomePage> {
   final bloc = CounterBloc();
 
   @override
+  void initState() {
+    super.initState();
+    bloc.stream.listen((event) {});
+  }
+
+  @override
   void dispose() {
     super.dispose();
     bloc.dispose();
@@ -72,19 +78,15 @@ class _MyHomePageState extends State<MyHomePage> {
     log('Building screen...');
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      appBar: AppBar(title: Text(widget.title)),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            BlocOBS(
+            const Text('You have pushed the button this many times:'),
+            BlocOBS<int>(
               bloc: bloc,
-              builder: (context, state, child) {
+              builder: (context, state) {
                 return Text(
                   '$state',
                   style: Theme.of(context).textTheme.headline4,

@@ -4,7 +4,7 @@ import 'bloc_rx.dart';
 
 // BLOC BUILDER
 
-typedef BlocBuilder<S> = Widget Function(BuildContext context, S state, Widget? child);
+typedef BlocBuilder<S> = Widget Function(BuildContext context, S state);
 
 // IMPLEMENTATION
 
@@ -13,15 +13,12 @@ class BlocOBS<S> extends BlocOBSWidget {
     Key? key,
     required BlocRX bloc,
     required this.builder,
-    this.child,
   }) : super(key: key, bloc: bloc);
 
   final BlocBuilder<S> builder;
 
-  final Widget? child;
-
   @override
-  Widget build(BuildContext context) => builder(context, bloc.state as S, child);
+  Widget build(BuildContext context) => builder(context, bloc.state as S);
 }
 
 // INTERFACE
