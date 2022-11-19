@@ -38,7 +38,7 @@ class CounterBloc extends BlocRX<CounterEvent, int> {
 ```dart
 BlocOBS<int>(
   bloc: bloc,
-  builder: (context, state, child) {
+  builder: (context, state) {
     return Text('$state');
   },
 ),
