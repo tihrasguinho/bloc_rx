@@ -1,6 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
@@ -18,9 +19,13 @@ abstract class BlocRX<E extends Object?, S extends Object?> {
   StreamSink<E> get sink => _controller.sink;
 
   /// Stream that provides the output of BLoC!
-  Stream<S> get stream => _controller.stream
-      .debounceTime(const Duration(milliseconds: 500))
-      .switchMap(mapEventsToState);
+  Stream<S> get stream => _controller.stream.switchMap(
+        (e) {
+          log(e.runtimeType.toString(), name: 'BLoC_RX');
+
+          return mapEventsToState(e);
+        },
+      );
 
   BlocRX(S initialState) {
     _state = initialState;
