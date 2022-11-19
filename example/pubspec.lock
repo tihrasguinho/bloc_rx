@@ -11,9 +11,11 @@ packages:
   bloc_rx:
     dependency: "direct main"
     description:
-      path: ".."
-      relative: true
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: "0d187b949082d16852722030255b04169534dcca"
+      url: "https://github.com/tihrasguinho/bloc_rx.git"
+    source: git
     version: "1.0.0"
   boolean_selector:
     dependency: transitive

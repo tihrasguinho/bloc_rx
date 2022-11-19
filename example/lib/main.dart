@@ -49,6 +49,13 @@ class CounterBloc extends BlocRX<CounterEvent, int> {
   }
 }
 
+class Contador extends BlocRX<CounterEvent, int> {
+  Contador() : super(0);
+
+  @override
+  Stream<int> mapEventsToState(CounterEvent event) async* {}
+}
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -64,6 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+    // bloc.add(ResetEvent());
     bloc.stream.listen((event) {});
   }
 

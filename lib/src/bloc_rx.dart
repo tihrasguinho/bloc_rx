@@ -13,7 +13,9 @@ abstract class BlocRX<E extends Object?, S extends Object?> {
   S get state => _state;
 
   /// Stream that provides the output of BLoC!
-  Stream<S> get stream => _controller.stream.switchMap(mapEventsToState);
+  Stream<S> get stream => _controller.stream
+      .debounceTime(const Duration(milliseconds: 500))
+      .switchMap(mapEventsToState);
 
   BlocRX(S initialState) {
     _state = initialState;
