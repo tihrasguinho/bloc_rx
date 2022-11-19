@@ -1,5 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'dart:async';
+
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -11,6 +13,9 @@ abstract class BlocRX<E extends Object?, S extends Object?> {
 
   /// Current state of BLoC!
   S get state => _state;
+
+  /// Sink that send events to BLoC
+  StreamSink<E> get sink => _controller.sink;
 
   /// Stream that provides the output of BLoC!
   Stream<S> get stream => _controller.stream
